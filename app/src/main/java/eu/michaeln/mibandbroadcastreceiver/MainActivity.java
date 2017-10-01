@@ -5,8 +5,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -26,6 +28,7 @@ import eu.michaeln.mibandbroadcastreceiver.adapters.ButtonActionListAdapter;
 public class MainActivity extends AppCompatActivity {
     private ButtonActionRepository _repository;
     private List<ButtonAction> _actions;
+    private Toolbar _toolbar;
     private ListView _buttonActionList;
     private FloatingActionButton _addButtonActionFAB;
 
@@ -35,10 +38,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         _repository = new ButtonActionRepository(this);
+        _actions = _repository.getActions();
+
         _buttonActionList = (ListView)findViewById(R.id.buttonActionList);
         _addButtonActionFAB = (FloatingActionButton)findViewById(R.id.addButtonActionFAB);
+        _toolbar = (Toolbar)findViewById(R.id.toolbar);
 
-        _actions = _repository.getActions();
+        setSupportActionBar(_toolbar);
+        getSupportActionBar().setTitle("Mi Band Broadcast Receiver");
+
         final ButtonActionListAdapter adapter = new ButtonActionListAdapter(this, _actions);
 
         _buttonActionList.setAdapter(adapter);
