@@ -80,7 +80,6 @@ public class ButtonActionListAdapter extends ArrayAdapter<ButtonAction> {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
                     builder.setMessage("Do you really want to delete " + action.getName() + "?")
-                            .setCancelable(false)
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {

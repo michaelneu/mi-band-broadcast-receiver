@@ -63,8 +63,6 @@ public class NotificationAction extends ButtonAction {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
-
-                        configurationDone.call();
                     }
                 });
 
