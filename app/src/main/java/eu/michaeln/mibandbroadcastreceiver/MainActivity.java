@@ -2,6 +2,7 @@ package eu.michaeln.mibandbroadcastreceiver;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -17,12 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eu.michaeln.mibandbroadcastreceiver.actions.AudioManagerAction;
+import eu.michaeln.mibandbroadcastreceiver.actions.LogAction;
 import eu.michaeln.mibandbroadcastreceiver.actions.NotificationAction;
 import eu.michaeln.mibandbroadcastreceiver.actions.VibratorAction;
 import eu.michaeln.mibandbroadcastreceiver.adapters.ButtonActionListAdapter;
 
 public class MainActivity extends AppCompatActivity {
     private ButtonActionRepository _repository;
+    private List<ButtonAction> _actions;
     private ListView _buttonActionList;
     private FloatingActionButton _addButtonActionFAB;
 
@@ -35,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         _buttonActionList = (ListView)findViewById(R.id.buttonActionList);
         _addButtonActionFAB = (FloatingActionButton)findViewById(R.id.addButtonActionFAB);
 
-        final List<ButtonAction> actions = _repository.getActions();
-        final ButtonActionListAdapter adapter = new ButtonActionListAdapter(this, actions);
+        _actions = _repository.getActions();
+        final ButtonActionListAdapter adapter = new ButtonActionListAdapter(this, _actions);
 
         _buttonActionList.setAdapter(adapter);
 
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 final List<ButtonAction> availableActions = new ArrayList<>();
 
                 availableActions.add(new AudioManagerAction());
+                availableActions.add(new LogAction());
                 availableActions.add(new NotificationAction());
                 availableActions.add(new VibratorAction());
 
@@ -98,5 +102,12 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        _repository.saveActions(_actions);
     }
 }

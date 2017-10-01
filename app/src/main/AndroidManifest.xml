@@ -24,6 +24,8 @@
                 <action android:name="nodomain.freeyourgadget.gadgetbridge.mibandButtonPressed" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".activities.LogDetailsActivity"></activity>
     </application>
 
 </manifest>

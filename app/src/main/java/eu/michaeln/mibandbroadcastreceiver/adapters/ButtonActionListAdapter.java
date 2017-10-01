@@ -61,7 +61,17 @@ public class ButtonActionListAdapter extends ArrayAdapter<ButtonAction> {
                 }
             });
 
+            final View.OnClickListener detailsClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    action.showDetails(getContext());
+                }
+            };
+
+            buttonActionName.setOnClickListener(detailsClickListener);
             buttonActionName.setText(action.getName());
+
+            buttonActionDescription.setOnClickListener(detailsClickListener);
             buttonActionDescription.setText(action.getDescription());
 
             deleteButtonAction.setOnClickListener(new View.OnClickListener() {

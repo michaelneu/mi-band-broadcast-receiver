@@ -19,6 +19,8 @@ public abstract class ButtonAction implements Serializable {
         configurationDone.call();
     }
 
+    public void showDetails(Context context) { }
+
     public abstract String getName();
     public abstract String getDescription();
 

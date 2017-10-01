@@ -17,5 +17,7 @@ public class MiBandBroadcastReceiver extends BroadcastReceiver {
                 action.invoke(context);
             }
         }
+
+        repository.saveActions(actions);
     }
 }
