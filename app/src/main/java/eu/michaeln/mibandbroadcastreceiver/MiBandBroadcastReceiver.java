@@ -4,13 +4,18 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import eu.michaeln.mibandbroadcastreceiver.actions.VibratorAction;
+import java.util.List;
 
 public class MiBandBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        ButtonAction action = new VibratorAction();
+        final ButtonActionRepository repository = new ButtonActionRepository(context);
+        final List<ButtonAction> actions = repository.getActions();
 
-        action.Invoke(context);
+        for (ButtonAction action : actions) {
+            if (action.isEnabled()) {
+                action.invoke(context);
+            }
+        }
     }
 }

@@ -15,8 +15,12 @@ public abstract class ButtonAction implements Serializable {
         _isEnabled = isEnabled;
     }
 
+    public void configureAction(Context context, ConfigurationDoneEvent configurationDone) {
+        configurationDone.call();
+    }
+
     public abstract String getName();
     public abstract String getDescription();
 
-    public abstract void Invoke(Context context);
+    public abstract void invoke(Context context);
 }

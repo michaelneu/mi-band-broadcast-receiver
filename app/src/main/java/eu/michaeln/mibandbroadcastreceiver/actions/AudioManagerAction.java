@@ -19,7 +19,7 @@ public class AudioManagerAction extends ButtonAction {
     }
 
     @Override
-    public void Invoke(Context context) {
+    public void invoke(Context context) {
         final AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         final long timestamp = SystemClock.uptimeMillis();
         final KeyEvent downEvent = new KeyEvent(timestamp, timestamp, KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MEDIA_NEXT, 0);

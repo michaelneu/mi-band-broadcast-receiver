@@ -13,11 +13,11 @@ public class VibratorAction extends ButtonAction {
 
     @Override
     public String getDescription() {
-        return "Vibrates the phone to signal the button action was received";
+        return "Vibrates the phone to signal the button was pressed";
     }
 
     @Override
-    public void Invoke(Context context) {
+    public void invoke(Context context) {
         final Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
         final long[] vibes = { 0, 100, 100, 100, 100, 100 };
 
