@@ -27,7 +27,14 @@ public class ButtonActionListAdapter extends ArrayAdapter<ButtonAction> {
         super(context, R.layout.list_item_buttonaction, actions);
 
         _actions = actions;
-        _repository = new ButtonActionRepository();
+        _repository = new ButtonActionRepository(context.getApplicationContext());
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+
+        _repository.saveActions(_actions);
     }
 
     @Override
@@ -50,7 +57,7 @@ public class ButtonActionListAdapter extends ArrayAdapter<ButtonAction> {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     action.setEnabled(b);
-                    _repository.saveActions(_actions);
+                    notifyDataSetChanged();
                 }
             });
 
@@ -68,7 +75,6 @@ public class ButtonActionListAdapter extends ArrayAdapter<ButtonAction> {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     _actions.remove(action);
-                                    _repository.saveActions(_actions);
                                     notifyDataSetChanged();
                                 }
                             })
