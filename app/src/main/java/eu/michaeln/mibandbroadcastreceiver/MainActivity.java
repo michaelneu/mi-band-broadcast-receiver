@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eu.michaeln.mibandbroadcastreceiver.actions.AudioManagerAction;
+import eu.michaeln.mibandbroadcastreceiver.actions.HttpRequestAction;
 import eu.michaeln.mibandbroadcastreceiver.actions.LogAction;
 import eu.michaeln.mibandbroadcastreceiver.actions.NotificationAction;
 import eu.michaeln.mibandbroadcastreceiver.actions.VibratorAction;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 final List<ButtonAction> availableActions = new ArrayList<>();
 
                 availableActions.add(new AudioManagerAction());
+                availableActions.add(new HttpRequestAction());
                 availableActions.add(new LogAction());
                 availableActions.add(new NotificationAction());
                 availableActions.add(new VibratorAction());
